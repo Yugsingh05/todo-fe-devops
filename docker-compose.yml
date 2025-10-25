@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  # Frontend Service
+  frontend:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: todo-frontend
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    networks:
+      - todo-network
+    restart: unless-stopped
+
+networks:
+  todo-network:
+    driver: bridge
